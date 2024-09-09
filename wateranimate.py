@@ -1,16 +1,12 @@
-import os
-
-# Joriy skriptning joylashuvini topamiz
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Bitta yuqoridagi papkani olamiz
-parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
-
-# phone.csv fayliga yo'l yaratamiz
-csv_file_path = os.path.join(parent_dir, 'phone.csv')
-
-# phone.csv faylining mavjudligini tekshiramiz
-if os.path.exists(csv_file_path):
-    print(f"Fayl topildi: {csv_file_path}")
-else:
-    print("phone.csv fayli topilmadi.")
+from telethon.sync import TelegramClient
+from telethon.sessions import StringSession
+import csv, os, sys
+from telethon.tl.functions.messages import ImportChatInviteRequest, SendMessageRequest
+from telethon import types, utils, errors
+import random
+from telethon.tl.functions.channels import LeaveChannelRequest
+import time, requests
+with open('phone.csv', 'r') as f:
+    global phlist
+    phlist = [row[0] for row in csv.reader(f)]
+print('\n\n\n\033[93m\nJami: ' + str(len(phlist)) + " ta Raqamlar mavjud\033[0m\n\n\n")
