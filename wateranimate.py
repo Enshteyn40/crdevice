@@ -1,23 +1,13 @@
-from telethon.sync import TelegramClient
-from telethon.sessions import StringSession
-import csv, os, sys
-from telethon.tl.functions.messages import ImportChatInviteRequest, SendMessageRequest
-from telethon import types, utils, errors
-import random
-from telethon.tl.functions.channels import LeaveChannelRequest
-import time, requests
+import os
+
+# Joriy faylning yo'lini chiqarish
 current_dir = os.path.dirname(os.path.abspath(__file__))
+print("Joriy katalog:", current_dir)
 
-# Bitta yuqoridagi katalogni olamiz
+# Bir pog'ona yuqoridagi katalog
 parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+print("Yuqoridagi katalog:", parent_dir)
 
-# parent_dir papkadagi phone.csv faylini yuklaymiz
+# Fayl yo'lini ko'rsatish
 csv_file_path = os.path.join(parent_dir, 'phone.csv')
-
-# phone.csv faylining mavjudligini tekshiramiz va uni o'qish
-if os.path.exists(csv_file_path):
-    with open(csv_file_path, 'r') as f:
-        phlist = [row[0] for row in csv.reader(f)]
-        print(f"Topilgan telefonlar soni: {len(phlist)}")
-else:
-    print("phone.csv fayli topilmadi.")
+print("Fayl yo'li:", csv_file_path)
