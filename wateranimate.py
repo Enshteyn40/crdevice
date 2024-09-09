@@ -10,14 +10,16 @@ from telethon.tl.functions.channels import LeaveChannelRequest
 import time
 import requests
 
-# Joriy faylning katalogini topamiz
-current_dir = os.path.dirname(os.path.abspath(__file__))
+# Foydalanuvchidan phone.csv joylashgan katalogga yo'lni so'raymiz
+input_path = input("Iltimos, phone.csv joylashgan katalogga to'liq yo'lni kiriting: ")
 
-# Bitta yuqoridagi katalogni olamiz
-parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+# Kirtilgan yo'lning mavjudligini tekshiramiz
+if not os.path.exists(input_path):
+    print(f"Kiritilgan yo'l mavjud emas: {input_path}")
+    sys.exit()
 
-# Yuqoridagi katalogdagi phone.csv fayliga yo'l yaratamiz
-csv_file_path = os.path.join(parent_dir, 'phone.csv')
+# phone.csv fayliga to'liq yo'l yaratamiz
+csv_file_path = os.path.join(input_path, 'phone.csv')
 
 # phone.csv faylining mavjudligini tekshiramiz va faylni o'qiymiz
 if os.path.exists(csv_file_path):
@@ -25,4 +27,4 @@ if os.path.exists(csv_file_path):
         phlist = [row[0] for row in csv.reader(f)]
         print(f"Topilgan telefonlar soni: {len(phlist)}")
 else:
-    print("phone.csv fayli topilmadi.")
+    print(f"phone.csv fayli topilmadi kiritilgan yo'lda: {csv_file_path}")
